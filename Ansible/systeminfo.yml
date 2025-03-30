@@ -1,0 +1,25 @@
+---
+- name: Gather system information
+  hosts: all
+  become: yes
+  tasks:
+
+    - name: Get OS release details
+      command: cat /etc/os-release
+      register: os_release
+
+    - name: Get system uptime
+      command: uptime
+      register: system_uptime
+
+    - name: Get disk space usage
+      command: df -h
+      register: disk_usage
+
+    - name: Get network interface details
+      command: ip a
+      register: network_info
+
+    - name: Get kernel details
+      command: uname -a
+      register: kernel_info
